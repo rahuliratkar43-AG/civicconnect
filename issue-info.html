@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CivicConnect - Issue Information</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ================================
+           ISSUE INFORMATION PAGE
+        ================================= */
+
+        .issue-info-page {
+            min-height: 100vh;
+            background: #f5f7fb;
+            padding: 30px 20px 60px;
+        }
+
+        /* Back Button */
+        .issue-back {
+            max-width: 1150px;
+            margin: 0 auto 20px;
+        }
+
+        .issue-back a {
+            text-decoration: none;
+            color: #243b64;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .issue-back a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header */
+        .issue-info-header {
+            max-width: 1150px;
+            margin: 0 auto 35px;
+            text-align: center;
+        }
+
+        .issue-info-label {
+            display: inline-block;
+            background: #eaf0ff;
+            color: #315a9b;
+            padding: 7px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .issue-info-header h1 {
+            margin: 0;
+            font-size: 48px;
+            color: #172744;
+            font-weight: 800;
+        }
+
+        .issue-info-header p {
+            margin: 20px auto 0;
+            max-width: 900px;
+            font-size: 18px;
+            line-height: 1.7;
+            color: #64748b;
+        }
+
+        /* =================================
+           MAIN ISSUE IMAGE
+        ================================= */
+
+        .issue-main-image {
+            display: block;
+
+            width: 100%;
+            max-width: 1150px;
+
+            /* Fixed desktop image area */
+            height: 460px;
+
+            margin: 0 auto 50px;
+
+            /* Prevent image distortion */
+            object-fit: cover;
+            object-position: center center;
+
+            border-radius: 20px;
+
+            box-shadow: 0 15px 35px rgba(30, 41, 59, 0.12);
+
+            background: #e9edf5;
+
+            /* Prevent unexpected sizing */
+            box-sizing: border-box;
+        }
+
+        /* Content Grid */
+        .issue-content-grid {
+            max-width: 1150px;
+            margin: 0 auto;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            gap: 28px;
+        }
+
+        /* Information Boxes */
+        .issue-info-box {
+            background: #ffffff;
+            padding: 34px;
+            border-radius: 18px;
+
+            border: 1px solid #e2e8f0;
+
+            box-shadow: 0 8px 25px rgba(30, 41, 59, 0.06);
+        }
+
+        .issue-info-box h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+
+            color: #172744;
+
+            font-size: 25px;
+            font-weight: 750;
+        }
+
+        .issue-info-box p {
+            color: #64748b;
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        /* Problem List */
+        .issue-info-box ul {
+            margin: 0;
+            padding-left: 22px;
+        }
+
+        .issue-info-box li {
+            color: #64748b;
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 7px;
+        }
+
+        /* Importance Box */
+        .importance-box {
+            max-width: 1150px;
+            margin: 28px auto 0;
+
+            background: #ffffff;
+
+            padding: 34px;
+
+            border-radius: 18px;
+
+            border: 1px solid #e2e8f0;
+
+            box-shadow: 0 8px 25px rgba(30, 41, 59, 0.06);
+        }
+
+        .importance-box h2 {
+            margin-top: 0;
+            margin-bottom: 18px;
+
+            color: #172744;
+            font-size: 25px;
+        }
+
+        .importance-box p {
+            color: #64748b;
+            font-size: 17px;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* Why Report */
+        .why-report-box {
+            max-width: 1150px;
+            margin: 28px auto 0;
+
+            background: #ffffff;
+
+            padding: 34px;
+
+            border-radius: 18px;
+
+            border: 1px solid #e2e8f0;
+
+            box-shadow: 0 8px 25px rgba(30, 41, 59, 0.06);
+        }
+
+        .why-report-box h2 {
+            margin-top: 0;
+            color: #172744;
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        .why-report-list {
+            margin: 0;
+            padding-left: 22px;
+        }
+
+        .why-report-list li {
+            color: #64748b;
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 8px;
+        }
+
+        /* Report Information */
+        .report-info-section {
+            max-width: 1150px;
+            margin: 28px auto 0;
+
+            background: #eef5ff;
+
+            padding: 30px;
+
+            border-radius: 18px;
+
+            border: 1px solid #d8e6ff;
+        }
+
+        .report-info-section h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+
+            color: #172744;
+            font-size: 25px;
+        }
+
+        .report-info-section p {
+            color: #64748b;
+            font-size: 17px;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* Report Button Area */
+        .issue-report-action {
+            max-width: 1150px;
+            margin: 35px auto 0;
+
+            text-align: center;
+        }
+
+        .issue-report-button {
+            display: inline-block;
+
+            padding: 15px 30px;
+
+            background: #315a9b;
+            color: #ffffff;
+
+            text-decoration: none;
+
+            border-radius: 10px;
+
+            font-size: 17px;
+            font-weight: 700;
+
+            transition: 0.25s ease;
+
+            box-shadow: 0 8px 20px rgba(49, 90, 155, 0.2);
+        }
+
+        .issue-report-button:hover {
+            background: #24477d;
+            transform: translateY(-2px);
+        }
+
+        /* =================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 768px) {
+
+            .issue-info-page {
+                padding: 20px 15px 50px;
+            }
+
+            .issue-info-header h1 {
+                font-size: 34px;
+            }
+
+            .issue-info-header p {
+                font-size: 16px;
+            }
+
+            .issue-main-image {
+                width: 100%;
+                height: 280px;
+                margin-bottom: 35px;
+                border-radius: 15px;
+
+                object-fit: cover;
+                object-position: center center;
+            }
+
+            .issue-content-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .issue-info-box,
+            .importance-box,
+            .why-report-box,
+            .report-info-section {
+                padding: 25px;
+            }
+
+            .issue-info-box h2,
+            .importance-box h2,
+            .why-report-box h2,
+            .report-info-section h2 {
+                font-size: 22px;
+            }
+
+            .issue-info-box p,
+            .issue-info-box li,
+            .importance-box p,
+            .why-report-list li,
+            .report-info-section p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================================
+         NAVBAR
+    ================================= -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+            Civic<span>Connect</span>
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="report.html">Report Issue</a>
+            <a href="track.html">Track Complaint</a>
+        </nav>
+
+    </header>
+
+
+    <!-- ================================
+         ISSUE INFORMATION PAGE
+    ================================= -->
+
+    <main class="issue-info-page">
+
+        <!-- Back -->
+        <div class="issue-back">
+            <a href="index.html">← Back to Home</a>
+        </div>
+
+
+        <!-- Issue Header -->
+        <section class="issue-info-header">
+
+            <div class="issue-info-label">
+                Civic Issue Information
+            </div>
+
+            <h1 id="issueTitle">
+                Road & Potholes
+            </h1>
+
+            <p id="issueDescription">
+                Damaged roads and potholes can affect safe and comfortable travel for pedestrians, cyclists and motorists.
+            </p>
+
+        </section>
+
+
+        <!-- Main Image -->
+        <img
+            id="issueImage"
+            class="issue-main-image"
+            src=""
+            alt="Civic Issue"
+        >
+
+
+        <!-- Main Information -->
+        <section class="issue-content-grid">
+
+            <!-- What is the problem -->
+            <div class="issue-info-box">
+
+                <h2>
+                    🔎 What is this problem?
+                </h2>
+
+                <p id="whatIsIt"></p>
+
+            </div>
+
+
+            <!-- Common Problems -->
+            <div class="issue-info-box">
+
+                <h2>
+                    ⚠️ Common problems
+                </h2>
+
+                <ul id="problemList"></ul>
+
+            </div>
+
+        </section>
+
+
+        <!-- Why it is important -->
+        <section class="importance-box">
+
+            <h2>
+                📌 Why is this important?
+            </h2>
+
+            <p id="importanceText"></p>
+
+        </section>
+
+
+        <!-- Why Report -->
+        <section class="why-report-box">
+
+            <h2>
+                📢 Why should you report it?
+            </h2>
+
+            <ul class="why-report-list">
+
+                <li>
+                    It helps the concerned department know about the problem.
+                </li>
+
+                <li>
+                    It allows civic authorities to identify problem areas.
+                </li>
+
+                <li>
+                    It can help improve public safety and infrastructure.
+                </li>
+
+                <li>
+                    Your report can contribute to faster issue resolution.
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- Reporting Information -->
+        <section class="report-info-section">
+
+            <h2>
+                📝 How can you report this issue?
+            </h2>
+
+            <p>
+                You can submit a complaint through CivicConnect by providing
+                the issue details, location and supporting information.
+                Your complaint can then be tracked using the complaint ID.
+            </p>
+
+        </section>
+
+
+        <!-- Report Button -->
+        <div class="issue-report-action">
+
+            <a
+                id="reportButton"
+                class="issue-report-button"
+                href="report.html"
+            >
+                🚨 Report This Issue
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================================
+         JAVASCRIPT
+    ================================= -->
+
+    <script>
+
+        const issueData = {
+
+            /* =================================
+               ROAD & POTHOLES
+            ================================= */
+
+            road: {
+
+                title: "Road & Potholes",
+
+                description:
+                    "Damaged roads and potholes can affect safe and comfortable travel for pedestrians, cyclists and motorists.",
+
+                /* HD ROAD IMAGE */
+                image:
+                    "https://etimg.etb2bimg.com/thumb/msid-122900081%2Cwidth-1200%2Cheight-900%2Cresizemode-4/.jpg",
+
+                whatIsIt:
+                    "Road and pothole problems include damaged road surfaces, potholes, cracks, uneven surfaces and other conditions that may make transportation difficult or uncomfortable.",
+
+                problems: [
+                    "Vehicle damage",
+                    "Unsafe road conditions",
+                    "Difficulty for pedestrians and cyclists",
+                    "Traffic disruption"
+                ],
+
+                importance:
+                    "Well-maintained roads are important for safe transportation, smooth traffic movement and comfortable travel for everyone."
+            },
+
+
+            /* =================================
+               GARBAGE
+            ================================= */
+
+            garbage: {
+
+                title: "Garbage",
+
+                description:
+                    "Uncollected garbage and improper waste disposal can affect cleanliness, hygiene and the surrounding environment.",
+
+                image:
+                    "https://media.assettype.com/deccanherald%2Fimport%2Fsites%2Fdh%2Ffiles%2Farticleimages%2F2022%2F08%2F28%2Ffile7cixwh43yc9xko2el27-1140008-1661640526.jpg?ar=40%3A21&auto=format%2Ccompress&mode=crop&ogImage=true&w=1200",
+
+                whatIsIt:
+                    "Garbage problems include uncollected waste, overflowing garbage bins, illegal dumping and waste accumulated on roads or public spaces.",
+
+                problems: [
+                    "Bad smell",
+                    "Unhygienic surroundings",
+                    "Increased insects and pests",
+                    "Blocked drainage",
+                    "Environmental pollution"
+                ],
+
+                importance:
+                    "Proper waste collection and disposal helps maintain clean, hygienic and healthy public spaces."
+            },
+
+
+            /* =================================
+               WATER LEAKAGE
+            ================================= */
+
+            water: {
+
+                title: "Water Leakage",
+
+                description:
+                    "Water leakage from damaged pipelines can waste water and create problems on roads and public areas.",
+
+                /* HD WATER LEAKAGE IMAGE */
+                image:
+                    "https://environment.ec.europa.eu/sites/default/files/styles/oe_theme_ratio_3_2_medium/public/2024-03/waterwise-website-banner-poorly-managed-water.jpg?h=222b92f9&itok=Y5kEKeiG",
+
+                whatIsIt:
+                    "Water leakage occurs when water escapes from damaged, broken or poorly maintained pipelines, valves or other parts of the water supply system.",
+
+                problems: [
+                    "Water wastage",
+                    "Water accumulation on roads",
+                    "Damage to road surfaces",
+                    "Disruption of water supply",
+                    "Slippery and unsafe roads"
+                ],
+
+                importance:
+                    "Reporting water leakage can help reduce water wastage, protect roads and allow the responsible department to repair damaged pipelines."
+            },
+
+
+            /* =================================
+               STREET LIGHTS
+            ================================= */
+
+            lights: {
+
+                title: "Street Lights",
+
+                description:
+                    "Broken or non-functional street lights can reduce visibility and make roads and public areas difficult to use at night.",
+
+                image:
+                    "https://images.mid-day.com/images/images/2024/aug/aarey-bike-night-a_e.jpg",
+
+                whatIsIt:
+                    "Street light problems include damaged lights, lights that are not working, broken poles and areas without adequate night-time lighting.",
+
+                problems: [
+                    "Poor visibility at night",
+                    "Unsafe roads",
+                    "Difficulty for pedestrians",
+                    "Reduced visibility for drivers"
+                ],
+
+                importance:
+                    "Functional street lights improve visibility and help people use roads and public spaces more safely after dark."
+            },
+
+
+            /* =================================
+               DRAINAGE
+            ================================= */
+
+            drainage: {
+
+                title: "Drainage",
+
+                description:
+                    "Blocked, damaged or open drains can cause waterlogging, poor sanitation and problems in public areas.",
+
+                /* HD DRAINAGE IMAGE */
+                image:
+                    "https://images.hindustantimes.com/img/2024/07/26/optimize/02_1721952443583_1721952463576.jpeg",
+
+                whatIsIt:
+                    "Drainage problems include blocked drains, overflowing drains, damaged drainage systems and drains filled with waste or other materials.",
+
+                problems: [
+                    "Waterlogging",
+                    "Overflowing drains",
+                    "Bad smell",
+                    "Mosquito breeding",
+                    "Difficulty for pedestrians and vehicles"
+                ],
+
+                importance:
+                    "Proper drainage helps prevent waterlogging, maintain sanitation and reduce problems during heavy rainfall."
+            },
+
+
+            /* =================================
+               OTHER CIVIC ISSUES
+            ================================= */
+
+            other: {
+
+                title: "Other Civic Issues",
+
+                description:
+                    "Other civic issues include damaged public infrastructure and problems that do not fall under the main reporting categories.",
+
+                /* HD PUBLIC INFRASTRUCTURE / MANHOLE IMAGE */
+                image:
+                    "https://cdn.pixabay.com/photo/2015/03/24/16/47/manhole-687817_1280.jpg",
+
+                whatIsIt:
+                    "Other civic issues may include damaged manholes, broken public infrastructure, damaged footpaths and other problems affecting public spaces.",
+
+                problems: [
+                    "Damaged public infrastructure",
+                    "Unsafe public areas",
+                    "Broken manholes or covers",
+                    "Problems affecting pedestrians",
+                    "Difficulty for vehicles"
+                ],
+
+                importance:
+                    "Reporting other civic problems helps bring attention to infrastructure issues that may otherwise remain unnoticed."
+            }
+
+        };
+
+
+        /* =================================
+           GET ISSUE FROM URL
+        ================================= */
+
+        const urlParams =
+            new URLSearchParams(window.location.search);
+
+        const issueType =
+            urlParams.get("issue");
+
+
+        /* =================================
+           SELECT ISSUE
+        ================================= */
+
+        const issue =
+            issueData[issueType] || issueData.other;
+
+
+        /* =================================
+           UPDATE PAGE
+        ================================= */
+
+        document.title =
+            issue.title + " | CivicConnect";
+
+
+        document.getElementById("issueTitle").textContent =
+            issue.title;
+
+
+        document.getElementById("issueDescription").textContent =
+            issue.description;
+
+
+        document.getElementById("issueImage").src =
+            issue.image;
+
+
+        document.getElementById("issueImage").alt =
+            issue.title;
+
+
+        document.getElementById("whatIsIt").textContent =
+            issue.whatIsIt;
+
+
+        document.getElementById("importanceText").textContent =
+            issue.importance;
+
+
+        /* =================================
+           PROBLEM LIST
+        ================================= */
+
+        const problemList =
+            document.getElementById("problemList");
+
+        problemList.innerHTML = "";
+
+        issue.problems.forEach(function(problem) {
+
+            const li =
+                document.createElement("li");
+
+            li.textContent =
+                problem;
+
+            problemList.appendChild(li);
+
+        });
+
+
+        /* =================================
+           REPORT BUTTON
+        ================================= */
+
+        const reportButton =
+            document.getElementById("reportButton");
+
+        reportButton.href =
+            "report.html?issue=" +
+            encodeURIComponent(issueType || "other");
+
+    </script>
+
+</body>
+</html>

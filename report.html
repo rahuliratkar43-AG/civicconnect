@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Report Issue | CivicConnect</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- LEAFLET CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <!-- LEAFLET JS -->
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+</head>
+
+
+<body>
+
+    <!-- ==========================================
+         NAVIGATION BAR
+         ========================================== -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            Civic<span>Connect</span>
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="report.html" class="active">
+                Report Issue
+            </a>
+
+            <a href="index.html#track">
+                Track Issue
+            </a>
+
+            <a href="index.html#about">
+                About
+            </a>
+
+        </nav>
+
+        <a href="login.html" class="login-btn">
+            Login
+        </a>
+
+    </header>
+
+
+    <!-- ==========================================
+         REPORT PAGE
+         ========================================== -->
+
+    <main class="report-page">
+
+        <section class="report-container">
+
+
+            <!-- ======================================
+                 HEADING
+                 ====================================== -->
+
+            <div class="report-heading">
+
+                <h1>
+                    Report a Civic Issue
+                </h1>
+
+                <p>
+                    Help improve your community by reporting problems
+                    such as potholes, garbage, water leakage and broken
+                    streetlights.
+                </p>
+
+            </div>
+
+
+            <!-- ======================================
+                 REPORT FORM
+                 ====================================== -->
+
+            <form
+                class="report-form"
+                id="reportForm"
+            >
+
+
+                <!-- ==================================
+                     ISSUE TYPE
+                     ================================== -->
+
+                <div class="form-group">
+
+                    <label for="issue-type">
+                        Issue Type
+                    </label>
+
+                    <select
+                        id="issue-type"
+                        name="issue-type"
+                        required
+                    >
+
+                        <option
+                            value=""
+                            disabled
+                            selected
+                        >
+                            Select an issue
+                        </option>
+
+                        <option value="pothole">
+                            Pothole / Road Damage
+                        </option>
+
+                        <option value="garbage">
+                            Garbage / Waste
+                        </option>
+
+                        <option value="water">
+                            Water Leakage
+                        </option>
+
+                        <option value="streetlight">
+                            Broken Streetlight
+                        </option>
+
+                        <option value="drainage">
+                            Drainage Problem
+                        </option>
+
+                        <option value="other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- ==================================
+                     LOCATION
+                     ================================== -->
+
+                <div class="form-group">
+
+                    <label for="location">
+                        Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        name="location"
+                        placeholder="Enter the issue location"
+                        required
+                    >
+
+
+                    <!--
+                        IMPORTANT:
+
+                        map.js updates these two hidden
+                        inputs whenever the user:
+                        - clicks on the map
+                        - searches a location
+                        - drags the marker
+                    -->
+
+                    <input
+                        type="hidden"
+                        id="latitude"
+                        name="latitude"
+                    >
+
+                    <input
+                        type="hidden"
+                        id="longitude"
+                        name="longitude"
+                    >
+
+
+                    <!-- MAP -->
+
+                    <div id="map"></div>
+
+                </div>
+
+
+                <!-- ==================================
+                     DESCRIPTION
+                     ================================== -->
+
+                <div class="form-group">
+
+                    <label for="description">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="5"
+                        placeholder="Describe the problem in detail..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- ==================================
+                     IMAGE UPLOAD
+                     ================================== -->
+
+                <div class="form-group">
+
+                    <label for="issue-image">
+                        Upload Image
+                    </label>
+
+                    <div class="upload-box">
+
+                        <input
+                            type="file"
+                            id="issue-image"
+                            name="issue-image"
+                            accept="image/*"
+                        >
+
+                        <p>
+                            Upload a photo of the civic issue
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==================================
+                     CONTACT INFORMATION
+                     ================================== -->
+
+                <div class="form-row">
+
+
+                    <!-- NAME -->
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Your Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Contact Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Enter your mobile number"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==================================
+                     AI NOTICE
+                     ================================== -->
+
+                <div class="ai-notice">
+
+                    <div class="ai-icon">
+                        AI
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            AI-Powered Classification
+                        </h3>
+
+                        <p>
+                            Our system will analyze your report and
+                            automatically identify the issue category
+                            and appropriate department.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==================================
+                     SUBMIT BUTTON
+                     ================================== -->
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                    id="submitBtn"
+                >
+                    Submit Report
+                </button>
+
+            </form>
+
+
+            <!-- ======================================
+                 SUCCESS MESSAGE
+                 ====================================== -->
+
+            <div
+                id="successMessage"
+                style="
+                    display:none;
+                    margin-top:20px;
+                    padding:20px;
+                    border-radius:10px;
+                    text-align:center;
+                "
+            >
+
+                <h2>
+                    Complaint Submitted Successfully
+                </h2>
+
+                <p>
+                    Your Complaint ID is:
+                </p>
+
+                <h2 id="complaintIdDisplay"></h2>
+
+                <p>
+                    Please save this Complaint ID to track your issue.
+                </p>
+
+            </div>
+
+
+            <!-- ======================================
+                 ERROR MESSAGE
+                 ====================================== -->
+
+            <div
+                id="errorMessage"
+                style="
+                    display:none;
+                    margin-top:20px;
+                    padding:15px;
+                    border-radius:10px;
+                    text-align:center;
+                "
+            ></div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+
+    <footer class="footer">
+
+        <div class="footer-content">
+
+
+            <div>
+
+                <h3>
+                    CivicConnect
+                </h3>
+
+                <p>
+                    Making communities better through
+                    technology and citizen participation.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="report.html">
+                    Report Issue
+                </a>
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Contact
+                </h3>
+
+                <p>
+                    Email: support@civicconnect.com
+                </p>
+
+                <p>
+                    Available 24/7
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 CivicConnect. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ==========================================
+         APP.JS
+         ========================================== -->
+
+    <script src="app.js"></script>
+
+
+    <!-- ==========================================
+         MAP.JS
+         ========================================== -->
+
+    <script src="map.js"></script>
+
+
+    <!-- ==========================================
+         COMPLAINT SUBMISSION
+         ========================================== -->
+
+    <script>
+
+        // ==========================================
+        // ELEMENTS
+        // ==========================================
+
+        const reportForm =
+            document.getElementById("reportForm");
+
+        const submitBtn =
+            document.getElementById("submitBtn");
+
+        const successMessage =
+            document.getElementById("successMessage");
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+        const complaintIdDisplay =
+            document.getElementById("complaintIdDisplay");
+
+        const latitudeInput =
+            document.getElementById("latitude");
+
+        const longitudeInput =
+            document.getElementById("longitude");
+
+
+        // ==========================================
+        // GET CURRENT USER
+        // ==========================================
+
+        function getCurrentUser() {
+
+            let userData =
+                localStorage.getItem(
+                    "civicConnectCurrentUser"
+                );
+
+
+            if (!userData) {
+
+                userData =
+                    sessionStorage.getItem(
+                        "civicConnectCurrentUser"
+                    );
+
+            }
+
+
+            if (!userData) {
+
+                return null;
+
+            }
+
+
+            try {
+
+                return JSON.parse(userData);
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Error reading current user:",
+                    error
+                );
+
+                return null;
+
+            }
+
+        }
+
+
+        // ==========================================
+        // CHECK LOGIN
+        // ==========================================
+
+        const currentUser =
+            getCurrentUser();
+
+
+        if (!currentUser) {
+
+            alert(
+                "Please login before submitting a complaint."
+            );
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        // ==========================================
+        // FORM SUBMISSION
+        // ==========================================
+
+        reportForm.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                // ==================================
+                // CHECK USER
+                // ==================================
+
+                const loggedInUser =
+                    getCurrentUser();
+
+
+                if (!loggedInUser) {
+
+                    showError(
+                        "Please login before submitting a complaint."
+                    );
+
+                    return;
+
+                }
+
+
+                // ==================================
+                // HIDE PREVIOUS MESSAGES
+                // ==================================
+
+                successMessage.style.display =
+                    "none";
+
+                errorMessage.style.display =
+                    "none";
+
+
+                // ==================================
+                // GET FORM VALUES
+                // ==================================
+
+                const issueType =
+                    document.getElementById(
+                        "issue-type"
+                    ).value.trim();
+
+
+                const location =
+                    document.getElementById(
+                        "location"
+                    ).value.trim();
+
+
+                const description =
+                    document.getElementById(
+                        "description"
+                    ).value.trim();
+
+
+                const name =
+                    document.getElementById(
+                        "name"
+                    ).value.trim();
+
+
+                const phone =
+                    document.getElementById(
+                        "phone"
+                    ).value.trim();
+
+
+                // ==================================
+                // BASIC VALIDATION
+                // ==================================
+
+                if (!issueType) {
+
+                    showError(
+                        "Please select an issue type."
+                    );
+
+                    return;
+
+                }
+
+
+                if (!location) {
+
+                    showError(
+                        "Please enter the issue location."
+                    );
+
+                    return;
+
+                }
+
+
+                if (!description) {
+
+                    showError(
+                        "Please describe the issue."
+                    );
+
+                    return;
+
+                }
+
+
+                if (!name) {
+
+                    showError(
+                        "Please enter your name."
+                    );
+
+                    return;
+
+                }
+
+
+                if (!phone) {
+
+                    showError(
+                        "Please enter your contact number."
+                    );
+
+                    return;
+
+                }
+
+
+                // ==================================
+                // GET MAP COORDINATES
+                // ==================================
+
+                const latitudeValue =
+                    latitudeInput.value.trim();
+
+
+                const longitudeValue =
+                    longitudeInput.value.trim();
+
+
+                console.log(
+                    "Latitude from map.js:",
+                    latitudeValue
+                );
+
+
+                console.log(
+                    "Longitude from map.js:",
+                    longitudeValue
+                );
+
+
+                // ==================================
+                // MAP LOCATION VALIDATION
+                // ==================================
+
+                if (
+                    latitudeValue === "" ||
+                    longitudeValue === ""
+                ) {
+
+                    showError(
+                        "Please select a location on the map before submitting."
+                    );
+
+                    return;
+
+                }
+
+
+                // ==================================
+                // CONVERT COORDINATES
+                // ==================================
+
+                const latitude =
+                    Number(latitudeValue);
+
+
+                const longitude =
+                    Number(longitudeValue);
+
+
+                // ==================================
+                // VALIDATE NUMBERS
+                // ==================================
+
+                if (
+                    !Number.isFinite(latitude) ||
+                    !Number.isFinite(longitude)
+                ) {
+
+                    showError(
+                        "Invalid map location. Please select the location again."
+                    );
+
+                    return;
+
+                }
+
+
+                // ==================================
+                // VALID LATITUDE RANGE
+                // ==================================
+
+                if (
+                    latitude < -90 ||
+                    latitude > 90
+                ) {
+
+                    showError(
+                        "Invalid latitude. Please select the location again."
+                    );
+
+                    return;
+
+                }
+
+
+                // ==================================
+                // VALID LONGITUDE RANGE
+                // ==================================
+
+                if (
+                    longitude < -180 ||
+                    longitude > 180
+                ) {
+
+                    showError(
+                        "Invalid longitude. Please select the location again."
+                    );
+
+                    return;
+
+                }
+
+
+                // ==================================
+                // COMPLAINT DATA
+                // MATCHES SERVER.JS
+                // ==================================
+
+                const complaintData = {
+
+                    userEmail:
+                        loggedInUser.email,
+
+                    issueType:
+                        issueType,
+
+                    location:
+                        location,
+
+                    description:
+                        description,
+
+                    name:
+                        name,
+
+                    phone:
+                        phone,
+
+                    latitude:
+                        latitude,
+
+                    longitude:
+                        longitude
+
+                };
+
+
+                console.log(
+                    "Sending complaint:",
+                    complaintData
+                );
+
+
+                // ==================================
+                // DISABLE BUTTON
+                // ==================================
+
+                submitBtn.disabled =
+                    true;
+
+                submitBtn.textContent =
+                    "Submitting...";
+
+
+                // ==================================
+                // SEND TO BACKEND
+                // ==================================
+
+                try {
+
+                    const response =
+                        await fetch(
+                            "http://localhost:5000/api/complaints",
+                            {
+
+                                method:
+                                    "POST",
+
+                                headers:
+                                    {
+                                        "Content-Type":
+                                            "application/json"
+                                    },
+
+                                body:
+                                    JSON.stringify(
+                                        complaintData
+                                    )
+
+                            }
+                        );
+
+
+                    // ==================================
+                    // READ RESPONSE
+                    // ==================================
+
+                    const result =
+                        await response.json();
+
+
+                    console.log(
+                        "Server response:",
+                        result
+                    );
+
+
+                    // ==================================
+                    // CHECK SERVER RESPONSE
+                    // ==================================
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            result.message ||
+                            "Complaint submission failed."
+                        );
+
+                    }
+
+
+                    // ==================================
+                    // CHECK COMPLAINT ID
+                    // ==================================
+
+                    if (
+                        !result.complaintId
+                    ) {
+
+                        throw new Error(
+                            "Complaint was submitted, but no Complaint ID was returned."
+                        );
+
+                    }
+
+
+                    // ==================================
+                    // SUCCESS
+                    // ==================================
+
+                    complaintIdDisplay.textContent =
+                        result.complaintId;
+
+
+                    successMessage.style.display =
+                        "block";
+
+
+                    // ==================================
+                    // RESET FORM
+                    // ==================================
+
+                    reportForm.reset();
+
+
+                    latitudeInput.value =
+                        "";
+
+                    longitudeInput.value =
+                        "";
+
+
+                    console.log(
+                        "Complaint successfully submitted."
+                    );
+
+
+                    console.log(
+                        "Complaint ID:",
+                        result.complaintId
+                    );
+
+                }
+
+
+                catch (error) {
+
+                    console.error(
+                        "Submission error:",
+                        error
+                    );
+
+
+                    showError(
+                        error.message ||
+                        "Unable to submit complaint. Please make sure the backend server is running."
+                    );
+
+                }
+
+
+                // ==================================
+                // ENABLE BUTTON
+                // ==================================
+
+                submitBtn.disabled =
+                    false;
+
+                submitBtn.textContent =
+                    "Submit Report";
+
+            }
+        );
+
+
+        // ==========================================
+        // ERROR FUNCTION
+        // ==========================================
+
+        function showError(message) {
+
+            errorMessage.textContent =
+                message;
+
+            errorMessage.style.display =
+                "block";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

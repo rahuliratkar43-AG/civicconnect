@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <!-- Makes the website responsive on mobile, tablet and desktop -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CivicConnect | Digital Civic Issue Reporting</title>
+
+    <!-- Connect CSS -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVIGATION BAR
+         ===================================================== -->
+
+    <header class="navbar">
+
+        <!-- Logo -->
+
+        <a href="index.html" class="logo">
+            Civic<span>Connect</span>
+        </a>
+
+
+        <!-- Navigation Links -->
+
+        <nav>
+
+            <a href="index.html" class="active">
+                Home
+            </a>
+
+            <a href="report.html">
+                Report Issue
+            </a>
+
+            <a href="track.html">
+                Track Complaint
+            </a>
+
+        </nav>
+
+
+        <!-- =================================================
+             USER PROFILE
+             ================================================= -->
+
+        <div class="user-profile" id="userProfile">
+
+            <button class="profile-button" id="profileButton">
+
+                <span class="profile-icon">👤</span>
+
+                <span id="profileName">
+                    User
+                </span>
+
+                <span class="profile-arrow">
+                    ▼
+                </span>
+
+            </button>
+
+
+            <!-- PROFILE DROPDOWN -->
+
+            <div class="profile-dropdown" id="profileDropdown">
+
+
+                <!-- USER INFORMATION -->
+
+                <div class="profile-info">
+
+                    <div class="profile-large-icon">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <strong id="dropdownName">
+                            User
+                        </strong>
+
+                        <span id="dropdownEmail">
+                            user@email.com
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-divider"></div>
+
+
+                <!-- MY PROFILE -->
+
+                <a href="#" id="myProfile">
+                    👤 My Profile
+                </a>
+
+
+                <!-- MY COMPLAINTS -->
+
+                <a href="#" id="myComplaints">
+                    📋 My Complaints
+                </a>
+
+
+                <div class="profile-divider"></div>
+
+
+                <!-- LOGOUT -->
+
+                <a href="#" id="logoutButton" class="logout-link">
+                    ↪ Logout
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+
+    <main>
+
+
+        <!-- =================================================
+             HERO SECTION
+             ================================================= -->
+
+        <section class="hero">
+
+
+            <!-- LEFT SIDE -->
+
+            <div class="hero-content">
+
+                <p class="small-heading">
+                    DIGITAL CIVIC PLATFORM
+                </p>
+
+
+                <h1>
+                    Report.
+                    <span>Track.</span>
+                    Improve.
+                </h1>
+
+
+                <p class="hero-description">
+                    CivicConnect makes it easier for citizens
+                    to report civic problems, track complaints,
+                    and contribute towards a better community.
+                </p>
+
+
+                <!-- MAIN ACTION BUTTONS -->
+
+                <div class="hero-buttons">
+
+                    <a href="report.html" class="primary-btn">
+                        Report an Issue
+                    </a>
+
+
+                    <a href="track.html" class="secondary-btn">
+                        Track Complaint
+                    </a>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     USER LOGIN BOX
+                     ========================================= -->
+
+                <div class="home-login">
+
+
+                    <!-- Login Icon -->
+
+                    <div class="home-login-icon">
+                        👤
+                    </div>
+
+
+                    <!-- Login Information -->
+
+                    <div class="home-login-text">
+
+                        <strong>
+                            Already have an account?
+                        </strong>
+
+                        <span>
+                            Login to manage and track your complaints.
+                        </span>
+
+                    </div>
+
+
+                    <!-- Login Button -->
+
+                    <a href="login.html" class="home-login-btn">
+                        Login
+                    </a>
+
+                </div>
+
+
+                <p class="hero-note">
+                    Simple • Transparent • Community-focused
+                </p>
+
+            </div>
+
+
+
+            <!-- =============================================
+                 RIGHT SIDE INFORMATION CARD
+                 ============================================= -->
+
+            <div class="hero-card">
+
+
+                <!-- Card Header -->
+
+                <div class="card-top">
+
+                    <span class="status-dot"></span>
+
+                    <span>
+                        Complaint Tracking
+                    </span>
+
+                </div>
+
+
+                <!-- Location Icon -->
+
+                <div class="location-icon">
+                    📍
+                </div>
+
+
+                <h3>
+                    Civic Issue Reported
+                </h3>
+
+
+                <p>
+                    Your complaint can be tracked from
+                    submission to resolution.
+                </p>
+
+
+
+                <!-- Complaint Progress -->
+
+                <div class="mini-status">
+
+
+                    <div>
+
+                        ✓
+
+                        <span>
+                            Issue Submitted
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        ✓
+
+                        <span>
+                            Department Assigned
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        ○
+
+                        <span>
+                            Resolution in Progress
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             STATISTICS SECTION
+             ================================================= -->
+
+        <section class="statistics">
+
+
+            <div class="stat">
+
+                <h2>
+                    500+
+                </h2>
+
+                <p>
+                    Issues Reported
+                </p>
+
+            </div>
+
+
+
+            <div class="stat">
+
+                <h2>
+                    320+
+                </h2>
+
+                <p>
+                    Issues Resolved
+                </p>
+
+            </div>
+
+
+
+            <div class="stat">
+
+                <h2>
+                    85%
+                </h2>
+
+                <p>
+                    Resolution Rate
+                </p>
+
+            </div>
+
+
+
+            <div class="stat">
+
+                <h2>
+                    24/7
+                </h2>
+
+                <p>
+                    Platform Access
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             HOW IT WORKS
+             ================================================= -->
+
+        <section class="section">
+
+
+            <div class="section-heading">
+
+                <p>
+                    HOW IT WORKS
+                </p>
+
+                <h2>
+                    Report Civic Issues in Four Simple Steps
+                </h2>
+
+                <span>
+                    A simple digital process designed to make
+                    civic reporting easier for everyone.
+                </span>
+
+            </div>
+
+
+
+            <div class="steps">
+
+
+                <!-- STEP 1 -->
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Identify the Issue
+                    </h3>
+
+                    <p>
+                        Find a civic problem such as a pothole,
+                        garbage, water leakage or broken streetlight.
+                    </p>
+
+                </div>
+
+
+
+                <!-- STEP 2 -->
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        02
+                    </div>
+
+                    <h3>
+                        Submit a Report
+                    </h3>
+
+                    <p>
+                        Upload the issue details, photograph
+                        and location through the reporting form.
+                    </p>
+
+                </div>
+
+
+
+                <!-- STEP 3 -->
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        03
+                    </div>
+
+                    <h3>
+                        Track Your Complaint
+                    </h3>
+
+                    <p>
+                        Use your complaint ID to check the
+                        current status of your submitted issue.
+                    </p>
+
+                </div>
+
+
+
+                <!-- STEP 4 -->
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        04
+                    </div>
+
+                    <h3>
+                        Get Resolution
+                    </h3>
+
+                    <p>
+                        The concerned department can process
+                        the complaint and update its resolution status.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             CIVIC ISSUES SECTION
+             ================================================= -->
+
+        <section class="issues-section">
+
+
+            <div class="section-heading">
+
+                <p>
+                    WHAT CAN YOU REPORT?
+                </p>
+
+                <h2>
+                    Report Problems Around You
+                </h2>
+
+                <span>
+                    Help make your neighbourhood cleaner,
+                    safer and better.
+                </span>
+
+            </div>
+
+
+
+            <div class="issue-grid">
+
+
+                <!-- =================================================
+                     ROAD & POTHOLES
+                     ================================================= -->
+
+                <div
+                    class="issue-card"
+                    onclick="openIssue('road')">
+
+                    <div class="issue-icon">
+                        🛣️
+                    </div>
+
+                    <h3>
+                        Road & Potholes
+                    </h3>
+
+                    <p>
+                        Report damaged roads, potholes and
+                        unsafe road conditions.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     GARBAGE
+                     ================================================= -->
+
+                <div
+                    class="issue-card"
+                    onclick="openIssue('garbage')">
+
+                    <div class="issue-icon">
+                        🗑️
+                    </div>
+
+                    <h3>
+                        Garbage
+                    </h3>
+
+                    <p>
+                        Report garbage accumulation and
+                        waste management problems.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     WATER LEAKAGE
+                     ================================================= -->
+
+                <div
+                    class="issue-card"
+                    onclick="openIssue('water')">
+
+                    <div class="issue-icon">
+                        💧
+                    </div>
+
+                    <h3>
+                        Water Leakage
+                    </h3>
+
+                    <p>
+                        Report water leakage, pipeline
+                        damage and related issues.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     STREET LIGHTS
+                     ================================================= -->
+
+                <div
+                    class="issue-card"
+                    onclick="openIssue('lights')">
+
+                    <div class="issue-icon">
+                        💡
+                    </div>
+
+                    <h3>
+                        Street Lights
+                    </h3>
+
+                    <p>
+                        Report broken or non-functional
+                        street lights.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     DRAINAGE
+                     ================================================= -->
+
+                <div
+                    class="issue-card"
+                    onclick="openIssue('drainage')">
+
+                    <div class="issue-icon">
+                        🌊
+                    </div>
+
+                    <h3>
+                        Drainage
+                    </h3>
+
+                    <p>
+                        Report blocked drains and
+                        drainage-related problems.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     OTHER CIVIC ISSUES
+                     ================================================= -->
+
+                <div
+                    class="issue-card"
+                    onclick="openIssue('other')">
+
+                    <div class="issue-icon">
+                        🏙️
+                    </div>
+
+                    <h3>
+                        Other Civic Issues
+                    </h3>
+
+                    <p>
+                        Report other problems affecting
+                        your local community.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             BENEFITS SECTION
+             ================================================= -->
+
+        <section class="section">
+
+
+            <div class="section-heading">
+
+                <p>
+                    WHY CIVICCONNECT?
+                </p>
+
+                <h2>
+                    Built for Citizens
+                </h2>
+
+                <span>
+                    A transparent and convenient way to
+                    communicate civic problems.
+                </span>
+
+            </div>
+
+
+
+            <div class="benefits">
+
+
+                <!-- BENEFIT 1 -->
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        📱
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Easy Reporting
+                        </h3>
+
+                        <p>
+                            Submit a civic complaint from
+                            anywhere using your device.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BENEFIT 2 -->
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        📍
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Location Based
+                        </h3>
+
+                        <p>
+                            Provide the location of the
+                            problem for better identification.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BENEFIT 3 -->
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        🔎
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Complaint Tracking
+                        </h3>
+
+                        <p>
+                            Track the progress of your
+                            complaint using a complaint ID.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BENEFIT 4 -->
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        🔔
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Status Updates
+                        </h3>
+
+                        <p>
+                            Stay informed about changes
+                            to your submitted complaint.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             CALL TO ACTION
+             ================================================= -->
+
+        <section class="cta">
+
+
+            <div>
+
+                <p>
+                    MAKE YOUR COMMUNITY BETTER
+                </p>
+
+                <h2>
+                    See a problem? Report it.
+                </h2>
+
+                <span>
+                    Your report can help create a cleaner,
+                    safer and better community.
+                </span>
+
+            </div>
+
+
+            <a href="report.html" class="cta-btn">
+                Report an Issue
+            </a>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer>
+
+
+        <div class="footer-content">
+
+
+            <!-- BRAND -->
+
+            <div class="footer-brand">
+
+                <h2>
+                    Civic<span>Connect</span>
+                </h2>
+
+                <p>
+                    A digital platform designed to make
+                    civic issue reporting easier,
+                    transparent and accessible.
+                </p>
+
+            </div>
+
+
+
+            <!-- QUICK LINKS -->
+
+            <div>
+
+                <h3>
+                    Quick Links
+                </h3>
+
+
+                <div class="footer-links">
+
+                    <a href="index.html">
+                        Home
+                    </a>
+
+                    <a href="report.html">
+                        Report Issue
+                    </a>
+
+                    <a href="track.html">
+                        Track Complaint
+                    </a>
+
+                    <a href="login.html">
+                        User Login
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PROJECT INFORMATION -->
+
+            <div class="footer-contact">
+
+                <h3>
+                    CivicConnect
+                </h3>
+
+                <p>
+                    Community Engagement Project
+                </p>
+
+                <p>
+                    Digital Civic Issue Reporting
+                </p>
+
+                <p>
+                    Built for the community.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- COPYRIGHT -->
+
+        <div class="copyright">
+
+            <p>
+                © 2026 CivicConnect.
+                Community Engagement Project.
+            </p>
+
+        </div>
+
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         EXISTING APP.JS
+         ===================================================== -->
+
+    <script src="app.js"></script>
+
+
+
+    <!-- =====================================================
+         ISSUE CARD CLICK FUNCTION
+         ===================================================== -->
+
+    <script>
+
+        function openIssue(issueType) {
+
+            window.location.href =
+                "issue-info.html?issue=" + issueType;
+
+        }
+
+    </script>
+
+
+
+    <!-- =====================================================
+         USER PROFILE / LOGIN SYSTEM
+         ===================================================== -->
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+
+            /* =================================================
+               GET ELEMENTS
+               ================================================= */
+
+            const userProfile =
+                document.getElementById("userProfile");
+
+            const profileButton =
+                document.getElementById("profileButton");
+
+            const profileDropdown =
+                document.getElementById("profileDropdown");
+
+            const profileName =
+                document.getElementById("profileName");
+
+            const dropdownName =
+                document.getElementById("dropdownName");
+
+            const dropdownEmail =
+                document.getElementById("dropdownEmail");
+
+            const homeLogin =
+                document.querySelector(".home-login");
+
+            const logoutButton =
+                document.getElementById("logoutButton");
+
+            const myProfile =
+                document.getElementById("myProfile");
+
+            const myComplaints =
+                document.getElementById("myComplaints");
+
+
+
+            /* =================================================
+               GET CURRENT USER
+               ================================================= */
+
+            function getCurrentUser() {
+
+                let currentUser =
+                    localStorage.getItem(
+                        "civicConnectCurrentUser"
+                    );
+
+
+                /* Check sessionStorage if
+                   localStorage does not contain a user */
+
+                if (!currentUser) {
+
+                    currentUser =
+                        sessionStorage.getItem(
+                            "civicConnectCurrentUser"
+                        );
+
+                }
+
+
+                /* No logged-in user */
+
+                if (!currentUser) {
+
+                    return null;
+
+                }
+
+
+                /* Convert JSON string into object */
+
+                try {
+
+                    return JSON.parse(currentUser);
+
+                } catch (error) {
+
+                    console.error(
+                        "Error reading current user:",
+                        error
+                    );
+
+                    return null;
+
+                }
+
+            }
+
+
+
+            /* =================================================
+               CHECK LOGIN STATUS
+               ================================================= */
+
+            const currentUser = getCurrentUser();
+
+
+            if (currentUser) {
+
+
+                /* ---------------------------------------------
+                   SHOW USER PROFILE
+                   --------------------------------------------- */
+
+                userProfile.style.display = "block";
+
+
+                /* ---------------------------------------------
+                   HIDE HOME LOGIN BOX
+                   --------------------------------------------- */
+
+                if (homeLogin) {
+
+                    homeLogin.style.display = "none";
+
+                }
+
+
+                /* ---------------------------------------------
+                   DISPLAY USER NAME
+                   --------------------------------------------- */
+
+                profileName.textContent =
+                    currentUser.name || "User";
+
+                dropdownName.textContent =
+                    currentUser.name || "User";
+
+
+                /* ---------------------------------------------
+                   DISPLAY USER EMAIL
+                   --------------------------------------------- */
+
+                dropdownEmail.textContent =
+                    currentUser.email || "";
+
+            }
+
+
+            else {
+
+
+                /* ---------------------------------------------
+                   NO USER LOGGED IN
+                   --------------------------------------------- */
+
+                userProfile.style.display = "none";
+
+
+                if (homeLogin) {
+
+                    homeLogin.style.display = "flex";
+
+                }
+
+            }
+
+
+
+            /* =================================================
+               OPEN / CLOSE PROFILE DROPDOWN
+               ================================================= */
+
+            profileButton.addEventListener(
+                "click",
+                function (event) {
+
+                    event.stopPropagation();
+
+                    profileDropdown.classList.toggle("show");
+
+                }
+            );
+
+
+
+            /* =================================================
+               CLOSE DROPDOWN WHEN CLICKING OUTSIDE
+               ================================================= */
+
+            document.addEventListener(
+                "click",
+                function (event) {
+
+                    if (
+                        !userProfile.contains(event.target)
+                    ) {
+
+                        profileDropdown.classList.remove(
+                            "show"
+                        );
+
+                    }
+
+                }
+            );
+
+
+
+            /* =================================================
+               LOGOUT
+               ================================================= */
+
+            logoutButton.addEventListener(
+                "click",
+                function (event) {
+
+                    event.preventDefault();
+
+
+                    /* Remove current user from
+                       localStorage */
+
+                    localStorage.removeItem(
+                        "civicConnectCurrentUser"
+                    );
+
+
+                    /* Remove current user from
+                       sessionStorage */
+
+                    sessionStorage.removeItem(
+                        "civicConnectCurrentUser"
+                    );
+
+
+                    /* Go back to login page */
+
+                    window.location.href = "login.html";
+
+                }
+            );
+
+
+
+            /* =================================================
+               MY PROFILE
+               ================================================= */
+
+            myProfile.addEventListener(
+                "click",
+                function (event) {
+
+                    event.preventDefault();
+
+                    /* Open the logged-in user's profile page */
+
+                    window.location.href = "profile.html";
+
+                }
+            );
+
+
+
+            /* =================================================
+               MY COMPLAINTS
+               ================================================= */
+
+            myComplaints.addEventListener(
+                "click",
+                function (event) {
+
+                    event.preventDefault();
+
+                    /* Open the logged-in user's complaints page */
+
+                    window.location.href = "my-complaints.html";
+
+                }
+            );
+
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>

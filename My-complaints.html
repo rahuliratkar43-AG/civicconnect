@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Complaints | CivicConnect</title>
+
+    <!-- Your existing CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =========================================
+           MY COMPLAINTS PAGE
+           ========================================= */
+
+        .my-complaints-page {
+            min-height: 100vh;
+            background: #f5f7fb;
+            padding-bottom: 60px;
+        }
+
+        /* Page Header */
+        .my-complaints-header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 25px 30px;
+        }
+
+        .my-complaints-header h1 {
+            font-size: 34px;
+            margin-bottom: 10px;
+            color: #172033;
+        }
+
+        .my-complaints-header p {
+            color: #667085;
+            font-size: 16px;
+        }
+
+        /* Summary Cards */
+        .complaint-summary {
+            max-width: 1200px;
+            margin: 0 auto 30px;
+            padding: 0 25px;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+
+            display: flex;
+            align-items: center;
+            gap: 18px;
+
+            border: 1px solid #e8ebf0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+        }
+
+        .summary-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 13px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 23px;
+            background: #eef4ff;
+        }
+
+        .summary-card h3 {
+            margin: 0 0 5px;
+            font-size: 28px;
+            color: #172033;
+        }
+
+        .summary-card p {
+            margin: 0;
+            color: #667085;
+            font-size: 14px;
+        }
+
+        /* Complaints Container */
+        .complaints-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        .complaints-container-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .complaints-container-header h2 {
+            margin: 0;
+            font-size: 23px;
+            color: #172033;
+        }
+
+        /* Complaint Card */
+        .complaint-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            margin-bottom: 20px;
+            padding: 25px;
+
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
+
+            transition: 0.25s ease;
+        }
+
+        .complaint-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+        }
+
+        .complaint-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+
+            padding-bottom: 18px;
+            border-bottom: 1px solid #edf0f3;
+        }
+
+        .complaint-id {
+            font-size: 14px;
+            color: #667085;
+            margin-bottom: 8px;
+        }
+
+        .complaint-id strong {
+            color: #344054;
+        }
+
+        .complaint-title {
+            font-size: 21px;
+            margin: 0;
+            color: #172033;
+        }
+
+        /* Status Badge */
+        .complaint-status {
+            padding: 7px 14px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .status-submitted {
+            background: #eef4ff;
+            color: #3157b7;
+        }
+
+        .status-review {
+            background: #fff5d9;
+            color: #9a6700;
+        }
+
+        .status-progress {
+            background: #e8f7ef;
+            color: #16834d;
+        }
+
+        .status-resolved {
+            background: #e6f7ed;
+            color: #137a45;
+        }
+
+        .status-default {
+            background: #f2f4f7;
+            color: #475467;
+        }
+
+        /* Complaint Information */
+        .complaint-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+
+            padding: 22px 0;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 10px;
+        }
+
+        .info-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 9px;
+            background: #f2f4f7;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+        }
+
+        .info-item small {
+            display: block;
+            color: #667085;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .info-item strong {
+            display: block;
+            color: #344054;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Progress */
+        .complaint-progress {
+            background: #f8fafc;
+            border-radius: 13px;
+            padding: 18px;
+            margin-top: 3px;
+        }
+
+        .progress-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #344054;
+            margin-bottom: 16px;
+        }
+
+        .progress-steps {
+            display: flex;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .progress-step::before {
+            content: "";
+            position: absolute;
+            top: 13px;
+            left: -50%;
+            width: 100%;
+            height: 2px;
+            background: #d0d5dd;
+            z-index: 0;
+        }
+
+        .progress-step:first-child::before {
+            display: none;
+        }
+
+        .progress-circle {
+            width: 27px;
+            height: 27px;
+            border-radius: 50%;
+
+            margin: 0 auto 7px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #e4e7ec;
+            color: #667085;
+
+            font-size: 12px;
+            font-weight: 600;
+
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-step.completed .progress-circle,
+        .progress-step.active .progress-circle {
+            background: #3157b7;
+            color: white;
+        }
+
+        .progress-step.completed::before,
+        .progress-step.active::before {
+            background: #3157b7;
+        }
+
+        .progress-step span {
+            font-size: 11px;
+            color: #667085;
+        }
+
+        .progress-step.active span,
+        .progress-step.completed span {
+            color: #344054;
+            font-weight: 600;
+        }
+
+        /* Card Bottom */
+        .complaint-bottom {
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 1px solid #edf0f3;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .submitted-date {
+            color: #667085;
+            font-size: 13px;
+        }
+
+        .view-details-btn {
+            text-decoration: none;
+            background: #3157b7;
+            color: white;
+
+            padding: 10px 18px;
+            border-radius: 9px;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            transition: 0.2s ease;
+        }
+
+        .view-details-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Loading */
+        .complaints-loading {
+            background: white;
+            border-radius: 16px;
+            padding: 50px;
+            text-align: center;
+            color: #667085;
+        }
+
+        .loading-spinner {
+            width: 35px;
+            height: 35px;
+
+            border: 4px solid #e5e7eb;
+            border-top-color: #3157b7;
+
+            border-radius: 50%;
+
+            margin: 0 auto 15px;
+
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Empty State */
+        .empty-complaints {
+            background: white;
+            border-radius: 18px;
+            padding: 60px 25px;
+            text-align: center;
+
+            border: 1px solid #e5e7eb;
+        }
+
+        .empty-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .empty-complaints h3 {
+            margin: 0 0 8px;
+            color: #172033;
+        }
+
+        .empty-complaints p {
+            color: #667085;
+            margin-bottom: 20px;
+        }
+
+        .report-now-btn {
+            display: inline-block;
+            text-decoration: none;
+            background: #3157b7;
+            color: white;
+            padding: 11px 20px;
+            border-radius: 9px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Error */
+        .complaints-error {
+            background: #fff5f5;
+            border: 1px solid #ffd6d6;
+            color: #b42318;
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 800px) {
+
+            .complaint-summary {
+                grid-template-columns: 1fr;
+            }
+
+            .complaint-info {
+                grid-template-columns: 1fr;
+            }
+
+            .complaint-top {
+                flex-direction: column;
+            }
+
+            .complaint-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .progress-step span {
+                font-size: 9px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .my-complaints-header {
+                padding-top: 30px;
+            }
+
+            .my-complaints-header h1 {
+                font-size: 28px;
+            }
+
+            .complaint-card {
+                padding: 18px;
+            }
+
+            .progress-steps {
+                overflow-x: auto;
+                padding-bottom: 5px;
+            }
+
+            .progress-step {
+                min-width: 90px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- =========================================
+     NAVBAR
+     ========================================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        <a href="index.html">
+            CivicConnect
+        </a>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="report.html">Report Issue</a>
+        <a href="track.html">Track Complaint</a>
+    </div>
+
+    <!-- Profile -->
+    <div class="profile-section">
+
+        <button class="profile-button" id="profileButton">
+            <span class="profile-avatar">👤</span>
+            <span id="profileName">Profile</span>
+            <span class="profile-arrow">▼</span>
+        </button>
+
+        <div class="profile-dropdown" id="profileDropdown">
+
+            <a href="profile.html">
+                👤 My Profile
+            </a>
+
+            <a href="my-complaints.html">
+                📋 My Complaints
+            </a>
+
+            <div class="dropdown-divider"></div>
+
+            <button id="logoutButton">
+                🚪 Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================================
+     PAGE
+     ========================================= -->
+
+<main class="my-complaints-page">
+
+    <!-- Header -->
+    <section class="my-complaints-header">
+
+        <h1>My Complaints</h1>
+
+        <p>
+            View and track all the civic issues you have reported.
+        </p>
+
+    </section>
+
+
+    <!-- Summary -->
+    <section class="complaint-summary">
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                📋
+            </div>
+
+            <div>
+                <h3 id="totalComplaints">0</h3>
+                <p>Total Complaints</p>
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                🔄
+            </div>
+
+            <div>
+                <h3 id="activeComplaints">0</h3>
+                <p>Active Complaints</p>
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                ✅
+            </div>
+
+            <div>
+                <h3 id="resolvedComplaints">0</h3>
+                <p>Resolved Complaints</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Complaints -->
+    <section class="complaints-container">
+
+        <div class="complaints-container-header">
+
+            <h2>Your Complaints</h2>
+
+        </div>
+
+
+        <!-- Loading -->
+        <div class="complaints-loading" id="loadingBox">
+
+            <div class="loading-spinner"></div>
+
+            <p>
+                Loading your complaints...
+            </p>
+
+        </div>
+
+
+        <!-- Error -->
+        <div
+            class="complaints-error"
+            id="errorBox"
+            style="display:none;"
+        >
+            Unable to load your complaints.
+        </div>
+
+
+        <!-- Complaints List -->
+        <div id="complaintsList"></div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================
+     JAVASCRIPT
+     ========================================= -->
+
+<script>
+
+    /* =========================================
+       GET LOGGED-IN USER
+       ========================================= */
+
+    const currentUserData =
+        localStorage.getItem("civicConnectCurrentUser");
+
+
+    if (!currentUserData) {
+
+        alert("Please login to view your complaints.");
+
+        window.location.href = "login.html";
+
+    }
+
+
+    let currentUser;
+
+    try {
+
+        currentUser =
+            JSON.parse(currentUserData);
+
+    } catch (error) {
+
+        localStorage.removeItem("civicConnectCurrentUser");
+
+        window.location.href = "login.html";
+
+    }
+
+
+    /* =========================================
+       PROFILE NAME
+       ========================================= */
+
+    if (currentUser) {
+
+        const profileName =
+            document.getElementById("profileName");
+
+        profileName.textContent =
+            currentUser.name ||
+            currentUser.fullName ||
+            currentUser.email ||
+            "Profile";
+    }
+
+
+    /* =========================================
+       PROFILE DROPDOWN
+       ========================================= */
+
+    const profileButton =
+        document.getElementById("profileButton");
+
+    const profileDropdown =
+        document.getElementById("profileDropdown");
+
+
+    profileButton.addEventListener("click", function () {
+
+        profileDropdown.classList.toggle("show");
+
+    });
+
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !profileButton.contains(event.target) &&
+            !profileDropdown.contains(event.target)
+        ) {
+
+            profileDropdown.classList.remove("show");
+
+        }
+
+    });
+
+
+    /* =========================================
+       LOGOUT
+       ========================================= */
+
+    document
+        .getElementById("logoutButton")
+        .addEventListener("click", function () {
+
+            localStorage.removeItem(
+                "civicConnectCurrentUser"
+            );
+
+            window.location.href = "login.html";
+
+        });
+
+
+    /* =========================================
+       STATUS CLASS
+       ========================================= */
+
+    function getStatusClass(status) {
+
+        const value =
+            String(status || "")
+            .toLowerCase();
+
+        if (value.includes("submitted")) {
+
+            return "status-submitted";
+
+        }
+
+        if (
+            value.includes("review") ||
+            value.includes("under review")
+        ) {
+
+            return "status-review";
+
+        }
+
+        if (
+            value.includes("progress") ||
+            value.includes("work")
+        ) {
+
+            return "status-progress";
+
+        }
+
+        if (value.includes("resolved")) {
+
+            return "status-resolved";
+
+        }
+
+        return "status-default";
+
+    }
+
+
+    /* =========================================
+       PROGRESS STATUS
+       ========================================= */
+
+    function getStatusStep(status) {
+
+        const value =
+            String(status || "")
+            .toLowerCase();
+
+        if (value.includes("resolved")) {
+
+            return 4;
+
+        }
+
+        if (
+            value.includes("progress") ||
+            value.includes("work")
+        ) {
+
+            return 3;
+
+        }
+
+        if (value.includes("review")) {
+
+            return 2;
+
+        }
+
+        return 1;
+
+    }
+
+
+    /* =========================================
+       FORMAT ISSUE TYPE
+       ========================================= */
+
+    function formatIssueType(issueType) {
+
+        if (!issueType) {
+            return "Civic Issue";
+        }
+
+        return String(issueType)
+            .replace(/[-_]/g, " ")
+            .replace(/\b\w/g, function (letter) {
+                return letter.toUpperCase();
+            });
+
+    }
+
+
+    /* =========================================
+       FORMAT DATE
+       ========================================= */
+
+    function formatDate(dateValue) {
+
+        if (!dateValue) {
+            return "Not available";
+        }
+
+        const date =
+            new Date(dateValue);
+
+        if (isNaN(date.getTime())) {
+            return dateValue;
+        }
+
+        return date.toLocaleDateString(
+            "en-IN",
+            {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            }
+        );
+
+    }
+
+
+    /* =========================================
+       PROGRESS HTML
+       ========================================= */
+
+    function createProgress(status) {
+
+        const currentStep =
+            getStatusStep(status);
+
+
+        const steps = [
+            "Submitted",
+            "Under Review",
+            "In Progress",
+            "Resolved"
+        ];
+
+
+        let html =
+            '<div class="complaint-progress">' +
+
+            '<div class="progress-title">' +
+            'Complaint Progress' +
+            '</div>' +
+
+            '<div class="progress-steps">';
+
+
+        steps.forEach(function (step, index) {
+
+            const stepNumber = index + 1;
+
+            let className = "";
+
+
+            if (stepNumber < currentStep) {
+
+                className = "completed";
+
+            }
+            else if (stepNumber === currentStep) {
+
+                className = "active";
+
+            }
+
+
+            html +=
+
+                '<div class="progress-step ' +
+                className +
+                '">' +
+
+                '<div class="progress-circle">' +
+                stepNumber +
+                '</div>' +
+
+                '<span>' +
+                step +
+                '</span>' +
+
+                '</div>';
+
+        });
+
+
+        html +=
+            '</div>' +
+            '</div>';
+
+
+        return html;
+
+    }
+
+
+    /* =========================================
+       CREATE COMPLAINT CARD
+       ========================================= */
+
+    function createComplaintCard(complaint) {
+
+        const status =
+            complaint.status || "Submitted";
+
+
+        const issueType =
+            formatIssueType(
+                complaint.issueType
+            );
+
+
+        const complaintId =
+            complaint.complaintId ||
+            complaint.id ||
+            "Not available";
+
+
+        const location =
+            complaint.location ||
+            complaint.address ||
+            "Location not available";
+
+
+        const department =
+            complaint.department ||
+            "Not assigned";
+
+
+        const date =
+            formatDate(
+                complaint.createdAt ||
+                complaint.date ||
+                complaint.submittedAt
+            );
+
+
+        const description =
+            complaint.description ||
+            "No description provided.";
+
+
+        return `
+
+            <article class="complaint-card">
+
+                <div class="complaint-top">
+
+                    <div>
+
+                        <div class="complaint-id">
+                            Complaint ID:
+                            <strong>${complaintId}</strong>
+                        </div>
+
+                        <h3 class="complaint-title">
+                            ${issueType}
+                        </h3>
+
+                    </div>
+
+                    <span class="complaint-status ${getStatusClass(status)}">
+                        ${status}
+                    </span>
+
+                </div>
+
+
+                <div class="complaint-info">
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            📍
+                        </div>
+
+                        <div>
+
+                            <small>Location</small>
+
+                            <strong>
+                                ${location}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            🏢
+                        </div>
+
+                        <div>
+
+                            <small>Department</small>
+
+                            <strong>
+                                ${department}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            📅
+                        </div>
+
+                        <div>
+
+                            <small>Submitted On</small>
+
+                            <strong>
+                                ${date}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            📝
+                        </div>
+
+                        <div>
+
+                            <small>Description</small>
+
+                            <strong>
+                                ${description}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                ${createProgress(status)}
+
+
+                <div class="complaint-bottom">
+
+                    <span class="submitted-date">
+                        Complaint ID: ${complaintId}
+                    </span>
+
+                    <a
+                        href="status.html?id=${encodeURIComponent(complaintId)}"
+                        class="view-details-btn"
+                    >
+                        View Details →
+                    </a>
+
+                </div>
+
+            </article>
+
+        `;
+
+    }
+
+
+    /* =========================================
+       LOAD COMPLAINTS
+       ========================================= */
+
+    async function loadMyComplaints() {
+
+        const loadingBox =
+            document.getElementById("loadingBox");
+
+        const errorBox =
+            document.getElementById("errorBox");
+
+        const complaintsList =
+            document.getElementById("complaintsList");
+
+
+        try {
+
+            /*
+             * Get all complaints from backend
+             */
+
+            const response =
+                await fetch(
+                    "http://localhost:5000/api/complaints"
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Unable to fetch complaints"
+                );
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            /*
+             * Backend may return:
+             *
+             * [
+             *   {...},
+             *   {...}
+             * ]
+             *
+             * OR
+             *
+             * {
+             *   complaints: [...]
+             * }
+             */
+
+            let complaints = [];
+
+
+            if (Array.isArray(data)) {
+
+                complaints = data;
+
+            }
+            else if (
+                data &&
+                Array.isArray(data.complaints)
+            ) {
+
+                complaints =
+                    data.complaints;
+
+            }
+
+
+            /*
+             * Get current user's email
+             */
+
+            const userEmail =
+                String(
+                    currentUser.email || ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            /*
+             * IMPORTANT:
+             * Show ONLY current user's complaints
+             */
+
+            const myComplaints =
+                complaints.filter(function (complaint) {
+
+                    return String(
+                        complaint.userEmail || ""
+                    )
+                    .trim()
+                    .toLowerCase()
+                    === userEmail;
+
+                });
+
+
+            /*
+             * Update summary
+             */
+
+            const total =
+                myComplaints.length;
+
+
+            const resolved =
+                myComplaints.filter(
+                    function (complaint) {
+
+                        return String(
+                            complaint.status || ""
+                        )
+                        .toLowerCase()
+                        .includes("resolved");
+
+                    }
+                ).length;
+
+
+            const active =
+                total - resolved;
+
+
+            document.getElementById(
+                "totalComplaints"
+            ).textContent = total;
+
+
+            document.getElementById(
+                "activeComplaints"
+            ).textContent = active;
+
+
+            document.getElementById(
+                "resolvedComplaints"
+            ).textContent = resolved;
+
+
+            /*
+             * Hide loading
+             */
+
+            loadingBox.style.display =
+                "none";
+
+
+            /*
+             * No complaints
+             */
+
+            if (myComplaints.length === 0) {
+
+                complaintsList.innerHTML = `
+
+                    <div class="empty-complaints">
+
+                        <div class="empty-icon">
+                            📋
+                        </div>
+
+                        <h3>
+                            No Complaints Yet
+                        </h3>
+
+                        <p>
+                            You have not submitted any civic complaints yet.
+                        </p>
+
+                        <a
+                            href="report.html"
+                            class="report-now-btn"
+                        >
+                            Report an Issue
+                        </a>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            /*
+             * Display complaints
+             */
+
+            complaintsList.innerHTML =
+                myComplaints
+                    .map(createComplaintCard)
+                    .join("");
+
+
+        }
+        catch (error) {
+
+            console.error(
+                "My Complaints Error:",
+                error
+            );
+
+
+            loadingBox.style.display =
+                "none";
+
+
+            errorBox.style.display =
+                "block";
+
+
+            errorBox.textContent =
+                "Unable to connect to the CivicConnect server. Please make sure the backend server is running.";
+
+        }
+
+    }
+
+
+    /* =========================================
+       START
+       ========================================= */
+
+    if (currentUser) {
+
+        loadMyComplaints();
+
+    }
+
+</script>
+
+</body>
+</html>

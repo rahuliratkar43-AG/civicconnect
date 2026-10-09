@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Track Complaint | CivicConnect</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+            Civic<span>Connect</span>
+        </a>
+
+        <nav class="nav-links">
+
+            <a href="index.html">Home</a>
+
+            <a href="report.html">Report Issue</a>
+
+            <a href="track.html" class="active">
+                Track Complaint
+            </a>
+
+        </nav>
+
+        <a href="login.html" class="login-btn">
+            Login
+        </a>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="track-page">
+
+        <section class="track-header">
+
+            <div class="track-badge">
+                COMPLAINT TRACKING
+            </div>
+
+            <h1>
+                Track Your Complaint
+            </h1>
+
+            <p>
+                Stay updated on the progress of your civic complaint
+                using your unique complaint ID.
+            </p>
+
+        </section>
+
+
+        <!-- ================= TRACK CARD ================= -->
+
+        <section class="track-section">
+
+            <div class="track-card">
+
+                <div class="track-card-icon">
+                    🔎
+                </div>
+
+                <h2>
+                    Check Complaint Status
+                </h2>
+
+                <p class="track-description">
+                    Enter the complaint ID you received after
+                    successfully submitting your complaint.
+                </p>
+
+
+                <form id="track-form">
+
+                    <div class="track-input-group">
+
+                        <label for="complaint-id">
+                            Complaint ID
+                        </label>
+
+                        <div class="track-input-wrapper">
+
+                            <span class="track-input-icon">
+                                #
+                            </span>
+
+                            <input
+                                type="text"
+                                id="complaint-id"
+                                placeholder="Example: CC-2026-12345"
+                                autocomplete="off"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="track-submit-btn"
+                        id="track-submit-button"
+                    >
+                        Track Complaint
+                        <span>→</span>
+                    </button>
+
+                </form>
+
+
+                <div class="track-help">
+
+                    <span>💡</span>
+
+                    <p>
+                        Your complaint ID was provided when you
+                        submitted your complaint.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ERROR ================= -->
+
+        <div
+            id="track-error"
+            class="track-error"
+            style="display: none;"
+        ></div>
+
+
+        <!-- ================= BOTTOM INFO ================= -->
+
+        <section class="track-bottom">
+
+            <div class="track-info-card">
+
+                <div class="track-info-icon">
+                    📢
+                </div>
+
+                <div>
+
+                    <h3>
+                        Want to report another issue?
+                    </h3>
+
+                    <p>
+                        Help improve your community by reporting
+                        civic problems around you.
+                    </p>
+
+                </div>
+
+                <a href="report.html">
+                    Report Issue
+                    <span>→</span>
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+
+                <h2>
+                    Civic<span>Connect</span>
+                </h2>
+
+                <p>
+                    A digital platform designed to make
+                    civic issue reporting easier,
+                    transparent and accessible.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <div class="footer-links">
+
+                    <a href="index.html">
+                        Home
+                    </a>
+
+                    <a href="report.html">
+                        Report Issue
+                    </a>
+
+                    <a href="track.html">
+                        Track Complaint
+                    </a>
+
+                    <a href="login.html">
+                        User Login
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-contact">
+
+                <h3>
+                    CivicConnect
+                </h3>
+
+                <p>
+                    Community Engagement Project
+                </p>
+
+                <p>
+                    Digital Civic Issue Reporting
+                </p>
+
+                <p>
+                    Built for the community.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            <p>
+                © 2026 CivicConnect.
+                Community Engagement Project.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =================================================
+         TRACKING CODE
+         Kept directly inside track.html so the button
+         works even if track.js is not loading.
+    ================================================== -->
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const trackForm =
+                document.getElementById("track-form");
+
+            const complaintIdInput =
+                document.getElementById("complaint-id");
+
+            const trackError =
+                document.getElementById("track-error");
+
+            const trackButton =
+                document.getElementById("track-submit-button");
+
+
+            // =============================================
+            // FORM SUBMIT
+            // =============================================
+
+            trackForm.addEventListener("submit", async function (event) {
+
+                // Prevent page reload
+                event.preventDefault();
+
+
+                let complaintId =
+                    complaintIdInput.value.trim();
+
+
+                // Hide old error
+                trackError.style.display = "none";
+
+
+                // =========================================
+                // EMPTY CHECK
+                // =========================================
+
+                if (complaintId === "") {
+
+                    showError(
+                        "Please enter your complaint ID."
+                    );
+
+                    return;
+
+                }
+
+
+                // =========================================
+                // CLEAN ID
+                // =========================================
+
+                complaintId =
+                    complaintId
+                        .replace(/\s+/g, "")
+                        .toUpperCase();
+
+
+                complaintIdInput.value =
+                    complaintId;
+
+
+                // =========================================
+                // CHECK ID FORMAT
+                // =========================================
+
+                const complaintIdPattern =
+                    /^CC-\d{4}-\d{5}$/;
+
+
+                if (!complaintIdPattern.test(complaintId)) {
+
+                    showError(
+                        "Invalid complaint ID. Please enter an ID like CC-2026-12345."
+                    );
+
+                    return;
+
+                }
+
+
+                // =========================================
+                // DISABLE BUTTON
+                // =========================================
+
+                trackButton.disabled = true;
+
+                trackButton.innerHTML =
+                    "Checking...";
+
+
+                try {
+
+                    // =====================================
+                    // CONNECT TO BACKEND
+                    // =====================================
+
+                    const response =
+                        await fetch(
+                            `http://127.0.0.1:5000/api/complaints/${encodeURIComponent(complaintId)}`
+                        );
+
+
+                    const result =
+                        await response.json();
+
+
+                    // =====================================
+                    // CHECK COMPLAINT
+                    // =====================================
+
+                    if (
+                        !response.ok ||
+                        !result.success ||
+                        !result.complaint
+                    ) {
+
+                        showError(
+                            result.message ||
+                            "Complaint not found. Please check your complaint ID."
+                        );
+
+                        return;
+
+                    }
+
+
+                    // =====================================
+                    // GET COMPLAINT ID
+                    // =====================================
+
+                    const confirmedComplaintId =
+                        result.complaint.complaintId ||
+                        complaintId;
+
+
+                    // =====================================
+                    // OPEN STATUS PAGE
+                    // =====================================
+
+                    window.location.href =
+                        "./status.html?id=" +
+                        encodeURIComponent(
+                            confirmedComplaintId
+                        );
+
+                }
+
+
+                catch (error) {
+
+                    console.error(
+                        "Tracking Error:",
+                        error
+                    );
+
+
+                    showError(
+                        "Unable to connect to the server. Please make sure the backend is running."
+                    );
+
+                }
+
+
+                finally {
+
+                    trackButton.disabled = false;
+
+                    trackButton.innerHTML =
+                        'Track Complaint <span>→</span>';
+
+                }
+
+            });
+
+
+            // =============================================
+            // SHOW ERROR
+            // =============================================
+
+            function showError(message) {
+
+                trackError.textContent =
+                    message;
+
+                trackError.style.display =
+                    "block";
+
+                trackError.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+            }
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>

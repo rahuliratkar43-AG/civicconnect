@@ -1,0 +1,408 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | CivicConnect</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVIGATION BAR
+         ===================================================== -->
+
+    <header class="navbar">
+
+        <!-- LOGO -->
+
+        <a href="index.html" class="logo">
+            Civic<span>Connect</span>
+        </a>
+
+
+        <!-- NAVIGATION LINKS -->
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="report.html">
+                Report Issue
+            </a>
+
+            <a href="track.html">
+                Track Complaint
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         PROFILE PAGE
+         ===================================================== -->
+
+    <main>
+
+        <section class="profile-page">
+
+
+            <!-- PAGE HEADING -->
+
+            <div class="profile-page-heading">
+
+                <p>
+                    ACCOUNT
+                </p>
+
+                <h1>
+                    My Profile
+                </h1>
+
+                <span>
+                    View your CivicConnect account information.
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PROFILE CARD
+                 ================================================= -->
+
+            <div class="profile-card">
+
+
+                <!-- PROFILE ICON -->
+
+                <div class="profile-page-icon">
+                    👤
+                </div>
+
+
+                <!-- USER NAME -->
+
+                <h2 id="profileUserName">
+                    User
+                </h2>
+
+
+                <!-- USER EMAIL -->
+
+                <p id="profileUserEmail">
+                    user@email.com
+                </p>
+
+
+
+                <div class="profile-page-divider"></div>
+
+
+
+                <!-- =================================================
+                     USER DETAILS
+                     ================================================= -->
+
+                <div class="profile-details">
+
+
+                    <!-- FULL NAME -->
+
+                    <div class="profile-detail-row">
+
+                        <div class="profile-detail-icon">
+                            👤
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Full Name
+                            </span>
+
+                            <strong id="detailName">
+                                User
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- EMAIL -->
+
+                    <div class="profile-detail-row">
+
+                        <div class="profile-detail-icon">
+                            📧
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Email Address
+                            </span>
+
+                            <strong id="detailEmail">
+                                user@email.com
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     PROFILE ACTIONS
+                     ================================================= -->
+
+                <div class="profile-actions">
+
+
+                    <!-- BACK TO HOME -->
+
+                    <a
+                        href="index.html"
+                        class="profile-back-btn">
+
+                        ← Back to Home
+
+                    </a>
+
+
+                    <!-- LOGOUT -->
+
+                    <button
+                        type="button"
+                        id="logoutButton"
+                        class="profile-logout-btn">
+
+                        Logout
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         PROFILE JAVASCRIPT
+         ===================================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                /* =================================================
+                   GET CURRENT LOGGED-IN USER
+                   ================================================= */
+
+                let currentUser =
+                    localStorage.getItem(
+                        "civicConnectCurrentUser"
+                    );
+
+
+                /* -------------------------------------------------
+                   If not found in localStorage,
+                   check sessionStorage
+                   ------------------------------------------------- */
+
+                if (!currentUser) {
+
+                    currentUser =
+                        sessionStorage.getItem(
+                            "civicConnectCurrentUser"
+                        );
+
+                }
+
+
+                /* =================================================
+                   CHECK LOGIN
+                   ================================================= */
+
+                if (!currentUser) {
+
+                    alert(
+                        "Please login to view your profile."
+                    );
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+                /* =================================================
+                   CONVERT STORED USER DATA INTO OBJECT
+                   ================================================= */
+
+                try {
+
+                    currentUser =
+                        JSON.parse(currentUser);
+
+                }
+
+                catch (error) {
+
+                    console.error(
+                        "Error reading user information:",
+                        error
+                    );
+
+                    localStorage.removeItem(
+                        "civicConnectCurrentUser"
+                    );
+
+                    sessionStorage.removeItem(
+                        "civicConnectCurrentUser"
+                    );
+
+                    alert(
+                        "Your login session is invalid. Please login again."
+                    );
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+
+                /* =================================================
+                   GET USER NAME
+                   ================================================= */
+
+                const userName =
+                    currentUser.name ||
+                    "User";
+
+
+                /* =================================================
+                   GET USER EMAIL
+                   ================================================= */
+
+                const userEmail =
+                    currentUser.email ||
+                    "Email not available";
+
+
+
+                /* =================================================
+                   DISPLAY USER NAME
+                   ================================================= */
+
+                document.getElementById(
+                    "profileUserName"
+                ).textContent =
+                    userName;
+
+
+                document.getElementById(
+                    "detailName"
+                ).textContent =
+                    userName;
+
+
+
+                /* =================================================
+                   DISPLAY USER EMAIL
+                   ================================================= */
+
+                document.getElementById(
+                    "profileUserEmail"
+                ).textContent =
+                    userEmail;
+
+
+                document.getElementById(
+                    "detailEmail"
+                ).textContent =
+                    userEmail;
+
+
+
+                /* =================================================
+                   LOGOUT BUTTON
+                   ================================================= */
+
+                document.getElementById(
+                    "logoutButton"
+                ).addEventListener(
+                    "click",
+                    function () {
+
+
+                        /* -----------------------------------------
+                           Remove current logged-in user
+                           ----------------------------------------- */
+
+                        localStorage.removeItem(
+                            "civicConnectCurrentUser"
+                        );
+
+
+                        sessionStorage.removeItem(
+                            "civicConnectCurrentUser"
+                        );
+
+
+                        /* -----------------------------------------
+                           Go back to login page
+                           ----------------------------------------- */
+
+                        window.location.href =
+                            "login.html";
+
+                    }
+                );
+
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

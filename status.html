@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Complaint Status - CivicConnect</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <!-- ==========================================
+         NAVBAR
+    =========================================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            CivicConnect
+        </div>
+
+        <div class="nav-links">
+
+            <a href="./index.html">
+                Home
+            </a>
+
+            <a href="./report.html">
+                Report Issue
+            </a>
+
+            <a href="./track.html">
+                Track Complaint
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ==========================================
+         STATUS PAGE
+    =========================================== -->
+
+    <main class="status-page">
+
+        <!-- STATUS HEADER -->
+
+        <section class="status-header">
+
+            <div class="status-label">
+                COMPLAINT STATUS
+            </div>
+
+            <h1>
+                Complaint Status
+            </h1>
+
+            <p>
+                View the current status and complete information
+                of your submitted complaint.
+            </p>
+
+        </section>
+
+
+        <!-- ==========================================
+             STATUS CONTAINER
+        =========================================== -->
+
+        <section class="status-container">
+
+
+            <!-- LOADING -->
+
+            <div
+                id="status-loading"
+                style="display: block;"
+            >
+
+                Loading complaint information...
+
+            </div>
+
+
+            <!-- ERROR -->
+
+            <div
+                id="status-error"
+                style="display: none;"
+            >
+
+                Unable to load complaint information.
+
+            </div>
+
+
+            <!-- ==========================================
+                 RESULT
+            =========================================== -->
+
+            <div
+                id="status-result"
+                style="display: none;"
+            >
+
+
+                <!-- RESULT HEADER -->
+
+                <div class="status-result-header">
+
+                    <div class="status-label">
+                        COMPLAINT DETAILS
+                    </div>
+
+                    <div class="status-title-row">
+
+                        <div class="status-title-icon">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <h2 class="status-title">
+                                Complaint Information
+                            </h2>
+
+                            <p class="status-subtitle">
+                                Information submitted with your complaint
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==========================================
+                     MAIN STATUS
+                =========================================== -->
+
+                <div
+                    id="status-value"
+                    class="status-main-badge"
+                >
+
+                    <span class="status-dot"></span>
+
+                    <span id="status-text">
+                        Submitted
+                    </span>
+
+                </div>
+
+
+                <!-- ==========================================
+                     COMPLAINT INFORMATION
+                =========================================== -->
+
+                <div class="status-details">
+
+
+                    <!-- COMPLAINT ID -->
+
+                    <div class="status-detail-item">
+
+                        <div class="status-detail-label">
+                            Complaint ID
+                        </div>
+
+                        <div
+                            id="complaint-id"
+                            class="status-detail-value"
+                        >
+                            -
+                        </div>
+
+                    </div>
+
+
+                    <!-- ISSUE TYPE -->
+
+                    <div class="status-detail-item">
+
+                        <div class="status-detail-label">
+                            Issue Type
+                        </div>
+
+                        <div
+                            id="issue-type"
+                            class="status-detail-value"
+                        >
+                            -
+                        </div>
+
+                    </div>
+
+
+                    <!-- DEPARTMENT -->
+
+                    <div class="status-detail-item">
+
+                        <div class="status-detail-label">
+                            Department
+                        </div>
+
+                        <div
+                            id="department"
+                            class="status-detail-value"
+                        >
+                            -
+                        </div>
+
+                    </div>
+
+
+                    <!-- LOCATION -->
+
+                    <div class="status-detail-item">
+
+                        <div class="status-detail-label">
+                            Location
+                        </div>
+
+                        <div
+                            id="location"
+                            class="status-detail-value"
+                        >
+                            -
+                        </div>
+
+                    </div>
+
+
+                    <!-- DESCRIPTION -->
+
+                    <div class="status-detail-item">
+
+                        <div class="status-detail-label">
+                            Description
+                        </div>
+
+                        <div
+                            id="description"
+                            class="status-detail-value"
+                        >
+                            -
+                        </div>
+
+                    </div>
+
+
+                    <!-- NAME -->
+
+                    <div class="status-detail-item">
+
+                        <div class="status-detail-label">
+                            Name
+                        </div>
+
+                        <div
+                            id="name"
+                            class="status-detail-value"
+                        >
+                            -
+                        </div>
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="status-detail-item">
+
+                        <div class="status-detail-label">
+                            Phone
+                        </div>
+
+                        <div
+                            id="phone"
+                            class="status-detail-value"
+                        >
+                            -
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="status-detail-item">
+
+                        <div class="status-detail-label">
+                            Email
+                        </div>
+
+                        <div
+                            id="user-email"
+                            class="status-detail-value"
+                        >
+                            -
+                        </div>
+
+                    </div>
+
+
+                    <!-- LATITUDE -->
+
+                    <div class="status-detail-item">
+
+                        <div class="status-detail-label">
+                            Latitude
+                        </div>
+
+                        <div
+                            id="latitude"
+                            class="status-detail-value"
+                        >
+                            -
+                        </div>
+
+                    </div>
+
+
+                    <!-- LONGITUDE -->
+
+                    <div class="status-detail-item">
+
+                        <div class="status-detail-label">
+                            Longitude
+                        </div>
+
+                        <div
+                            id="longitude"
+                            class="status-detail-value"
+                        >
+                            -
+                        </div>
+
+                    </div>
+
+
+                    <!-- SUBMITTED DATE -->
+
+                    <div class="status-detail-item">
+
+                        <div class="status-detail-label">
+                            Submitted On
+                        </div>
+
+                        <div
+                            id="created-at"
+                            class="status-detail-value"
+                        >
+                            -
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==========================================
+                     STATUS TIMELINE
+                =========================================== -->
+
+                <div class="status-timeline">
+
+
+                    <!-- SUBMITTED -->
+
+                    <div
+                        id="timeline-submitted"
+                        class="timeline-item active"
+                    >
+
+                        <div class="timeline-circle">
+                            ✓
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <h3>
+                                Complaint Submitted
+                            </h3>
+
+                            <p>
+                                Your complaint has been successfully submitted.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-line"></div>
+
+
+                    <!-- UNDER REVIEW -->
+
+                    <div
+                        id="timeline-review"
+                        class="timeline-item"
+                    >
+
+                        <div class="timeline-circle">
+                            2
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <h3>
+                                Under Review
+                            </h3>
+
+                            <p>
+                                Your complaint will be reviewed by the concerned department.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-line"></div>
+
+
+                    <!-- WORK IN PROGRESS -->
+
+                    <div
+                        id="timeline-progress"
+                        class="timeline-item"
+                    >
+
+                        <div class="timeline-circle">
+                            3
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <h3>
+                                Work in Progress
+                            </h3>
+
+                            <p>
+                                The concerned department is working on the issue.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-line"></div>
+
+
+                    <!-- RESOLVED -->
+
+                    <div
+                        id="timeline-resolved"
+                        class="timeline-item"
+                    >
+
+                        <div class="timeline-circle">
+                            4
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <h3>
+                                Issue Resolved
+                            </h3>
+
+                            <p>
+                                The reported issue has been resolved.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BACK BUTTON -->
+
+                <div class="status-back">
+
+                    <a href="./track.html">
+                        ← Track Another Complaint
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==========================================
+         FOOTER
+    =========================================== -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 CivicConnect. All rights reserved.
+        </p>
+
+    </footer>
+
+
+
+    <!-- ==========================================
+         EXISTING STATUS JS
+    =========================================== -->
+
+    <script src="./status.js"></script>
+
+
+    <!-- ==========================================
+         STATUS PAGE DATA LOADING
+    =========================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            async function () {
+
+
+                // ==========================================
+                // GET COMPLAINT ID FROM URL
+                // ==========================================
+
+                const urlParams =
+                    new URLSearchParams(
+                        window.location.search
+                    );
+
+                const complaintId =
+                    urlParams.get("id");
+
+
+                // ==========================================
+                // GET HTML ELEMENTS
+                // ==========================================
+
+                const loading =
+                    document.getElementById(
+                        "status-loading"
+                    );
+
+                const errorBox =
+                    document.getElementById(
+                        "status-error"
+                    );
+
+                const result =
+                    document.getElementById(
+                        "status-result"
+                    );
+
+
+                const complaintIdElement =
+                    document.getElementById(
+                        "complaint-id"
+                    );
+
+                const issueTypeElement =
+                    document.getElementById(
+                        "issue-type"
+                    );
+
+                const departmentElement =
+                    document.getElementById(
+                        "department"
+                    );
+
+                const locationElement =
+                    document.getElementById(
+                        "location"
+                    );
+
+                const descriptionElement =
+                    document.getElementById(
+                        "description"
+                    );
+
+                const nameElement =
+                    document.getElementById(
+                        "name"
+                    );
+
+                const phoneElement =
+                    document.getElementById(
+                        "phone"
+                    );
+
+                const emailElement =
+                    document.getElementById(
+                        "user-email"
+                    );
+
+                const latitudeElement =
+                    document.getElementById(
+                        "latitude"
+                    );
+
+                const longitudeElement =
+                    document.getElementById(
+                        "longitude"
+                    );
+
+                const createdAtElement =
+                    document.getElementById(
+                        "created-at"
+                    );
+
+
+                // ==========================================
+                // CHECK COMPLAINT ID
+                // ==========================================
+
+                if (!complaintId) {
+
+                    loading.style.display =
+                        "none";
+
+                    errorBox.style.display =
+                        "block";
+
+                    errorBox.textContent =
+                        "Complaint ID is missing. Please go back and enter your Complaint ID.";
+
+                    return;
+                }
+
+
+                // ==========================================
+                // GET COMPLAINT FROM BACKEND
+                // ==========================================
+
+                try {
+
+                    const response =
+                        await fetch(
+                            "http://127.0.0.1:5000/api/complaints/" +
+                            encodeURIComponent(
+                                complaintId
+                            )
+                        );
+
+
+                    // ==========================================
+                    // CHECK RESPONSE
+                    // ==========================================
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            "Complaint not found"
+                        );
+
+                    }
+
+
+                    const data =
+                        await response.json();
+
+
+                    // ==========================================
+                    // GET ACTUAL COMPLAINT OBJECT
+                    // ==========================================
+
+                    const complaint =
+                        data.complaint;
+
+
+                    if (!complaint) {
+
+                        throw new Error(
+                            "Complaint information not found"
+                        );
+
+                    }
+
+
+                    // ==========================================
+                    // DISPLAY COMPLAINT INFORMATION
+                    // ==========================================
+
+                    complaintIdElement.textContent =
+                        complaint.complaintId ||
+                        complaintId;
+
+
+                    issueTypeElement.textContent =
+                        formatIssueType(
+                            complaint.issueType
+                        );
+
+
+                    departmentElement.textContent =
+                        complaint.department ||
+                        "-";
+
+
+                    locationElement.textContent =
+                        complaint.location ||
+                        "-";
+
+
+                    descriptionElement.textContent =
+                        complaint.description ||
+                        "-";
+
+
+                    nameElement.textContent =
+                        complaint.name ||
+                        "-";
+
+
+                    phoneElement.textContent =
+                        complaint.phone ||
+                        "-";
+
+
+                    emailElement.textContent =
+                        complaint.userEmail ||
+                        "-";
+
+
+                    latitudeElement.textContent =
+                        complaint.latitude !== undefined
+                            ? complaint.latitude
+                            : "-";
+
+
+                    longitudeElement.textContent =
+                        complaint.longitude !== undefined
+                            ? complaint.longitude
+                            : "-";
+
+
+                    createdAtElement.textContent =
+                        formatDate(
+                            complaint.createdAt
+                        );
+
+
+                    // ==========================================
+                    // DISPLAY STATUS
+                    // ==========================================
+
+                    const currentStatus =
+                        complaint.status ||
+                        "Submitted";
+
+
+                    updateStatus(
+                        currentStatus
+                    );
+
+
+                    // ==========================================
+                    // SHOW RESULT
+                    // ==========================================
+
+                    loading.style.display =
+                        "none";
+
+                    errorBox.style.display =
+                        "none";
+
+                    result.style.display =
+                        "block";
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Status page error:",
+                        error
+                    );
+
+
+                    loading.style.display =
+                        "none";
+
+                    result.style.display =
+                        "none";
+
+                    errorBox.style.display =
+                        "block";
+
+                    errorBox.textContent =
+                        "Unable to find this complaint. Please check your Complaint ID and try again.";
+
+                }
+
+
+                // ==========================================
+                // FORMAT ISSUE TYPE
+                // ==========================================
+
+                function formatIssueType(
+                    issueType
+                ) {
+
+                    if (!issueType) {
+
+                        return "-";
+
+                    }
+
+
+                    const issueMap = {
+
+                        pothole:
+                            "Pothole",
+
+                        garbage:
+                            "Garbage",
+
+                        water:
+                            "Water Leakage",
+
+                        streetlight:
+                            "Streetlight",
+
+                        drainage:
+                            "Drainage",
+
+                        other:
+                            "Other"
+
+                    };
+
+
+                    const lowerIssue =
+                        String(issueType)
+                            .toLowerCase();
+
+
+                    return (
+                        issueMap[lowerIssue] ||
+                        issueType
+                    );
+
+                }
+
+
+                // ==========================================
+                // FORMAT DATE
+                // ==========================================
+
+                function formatDate(
+                    dateValue
+                ) {
+
+                    if (!dateValue) {
+
+                        return "-";
+
+                    }
+
+
+                    const date =
+                        new Date(dateValue);
+
+
+                    if (
+                        Number.isNaN(
+                            date.getTime()
+                        )
+                    ) {
+
+                        return dateValue;
+
+                    }
+
+
+                    return date.toLocaleString(
+                        "en-IN",
+                        {
+                            day: "2-digit",
+                            month: "2-digit",
+                            year: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit"
+                        }
+                    );
+
+                }
+
+
+                // ==========================================
+                // UPDATE STATUS AND TIMELINE
+                // ==========================================
+
+                function updateStatus(
+                    status
+                ) {
+
+
+                    const statusText =
+                        document.getElementById(
+                            "status-text"
+                        );
+
+
+                    const statusValue =
+                        document.getElementById(
+                            "status-value"
+                        );
+
+
+                    const submitted =
+                        document.getElementById(
+                            "timeline-submitted"
+                        );
+
+                    const review =
+                        document.getElementById(
+                            "timeline-review"
+                        );
+
+                    const progress =
+                        document.getElementById(
+                            "timeline-progress"
+                        );
+
+                    const resolved =
+                        document.getElementById(
+                            "timeline-resolved"
+                        );
+
+
+                    const normalizedStatus =
+                        String(status)
+                            .toLowerCase()
+                            .trim();
+
+
+                    let currentStep = 1;
+
+                    let displayStatus =
+                        "Submitted";
+
+
+                    // ==========================================
+                    // STATUS 1
+                    // ==========================================
+
+                    if (
+                        normalizedStatus ===
+                            "submitted"
+                    ) {
+
+                        currentStep = 1;
+
+                        displayStatus =
+                            "Submitted";
+
+                    }
+
+
+                    // ==========================================
+                    // STATUS 2
+                    // ==========================================
+
+                    else if (
+                        normalizedStatus ===
+                            "under review"
+                    ) {
+
+                        currentStep = 2;
+
+                        displayStatus =
+                            "Under Review";
+
+                    }
+
+
+                    // ==========================================
+                    // STATUS 3
+                    // ==========================================
+
+                    else if (
+                        normalizedStatus ===
+                            "in progress" ||
+                        normalizedStatus ===
+                            "work in progress"
+                    ) {
+
+                        currentStep = 3;
+
+                        displayStatus =
+                            "Work in Progress";
+
+                    }
+
+
+                    // ==========================================
+                    // STATUS 4
+                    // ==========================================
+
+                    else if (
+                        normalizedStatus ===
+                            "resolved"
+                    ) {
+
+                        currentStep = 4;
+
+                        displayStatus =
+                            "Resolved";
+
+                    }
+
+
+                    // ==========================================
+                    // DISPLAY STATUS TEXT
+                    // ==========================================
+
+                    statusText.textContent =
+                        displayStatus;
+
+
+                    // ==========================================
+                    // RESET TIMELINE
+                    // ==========================================
+
+                    const timelineItems = [
+
+                        submitted,
+                        review,
+                        progress,
+                        resolved
+
+                    ];
+
+
+                    timelineItems.forEach(
+                        function (item, index) {
+
+                            if (!item) {
+                                return;
+                            }
+
+
+                            item.classList.remove(
+                                "active"
+                            );
+
+
+                            const circle =
+                                item.querySelector(
+                                    ".timeline-circle"
+                                );
+
+
+                            if (circle) {
+
+                                circle.textContent =
+                                    index + 1;
+
+                            }
+
+                        }
+                    );
+
+
+                    // ==========================================
+                    // ACTIVATE CURRENT + COMPLETED STEPS
+                    // ==========================================
+
+                    timelineItems.forEach(
+                        function (item, index) {
+
+                            if (
+                                item &&
+                                index <
+                                    currentStep
+                            ) {
+
+                                item.classList.add(
+                                    "active"
+                                );
+
+
+                                const circle =
+                                    item.querySelector(
+                                        ".timeline-circle"
+                                    );
+
+
+                                if (circle) {
+
+                                    circle.textContent =
+                                        "✓";
+
+                                }
+
+                            }
+
+                        }
+                    );
+
+                }
+
+            }
+
+        );
+
+    </script>
+
+</body>
+</html>
